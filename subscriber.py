@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import rospy
-import std_msgs
+from std_msgs.msg import UInt32
 
 def callback(data):
     q = 0.15
@@ -9,8 +9,12 @@ def callback(data):
 
 def subscriber():
     rospy.init_node('subscriber', anonymous=True)
-    rospy.Subscriber('/albert', std_msgs.msg.UInt32,callback) # Callback function is executed when data is received
+    rospy.Subscriber('/albert', UInt32,callback) # Callback function is executed when data is received
     rospy.spin()
+
+def publisher():
+    rospy.init_node('Result_publisher',anonymoys=True)
+    rospy.Publisher('/kthfs/result',UInt32)
 
 if __name__ == '__main__':
     subscriber()
