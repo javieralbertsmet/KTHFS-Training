@@ -8,9 +8,9 @@ def callback(data):
     q = 0.15
     pub = rospy.Publisher('/kthfs/result',Float32,queue_size=10) # may be a more efficient way
     rate = rospy.Rate(1) # Same rate as the publisher of the publisher.py script (in this case set to 1 Hz)
-    msg = data.data/q
+    msg = Float32(data.data/q)
     pub.publish(msg)
-    rospy.loginfo(msg) # data.data accesses the value of the integer in the message
+    rospy.loginfo(data.data/q) # data.data accesses the value of the integer in the message
     rate.sleep()
 
 def subscriber():
